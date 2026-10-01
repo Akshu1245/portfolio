@@ -38,15 +38,23 @@ $$('#refg button').forEach(b=>b.onclick=()=>openRef(T[b.dataset.i]));
 const W=[["St. Paul’s International School Mohali", "https://stpaulsinternationalschoolmohali.com/"], ["Career Time", "https://careertime.org/"], ["Whitehawk Academy", "https://whitehawkacademy.com/"], ["Bathinda College of Law", "https://bathindalawcollege.co/"], ["Armaan Immigration", "https://armaanimmigration.ca/"], ["Visa Lagwao", "https://visalagwao.com/"], ["Red Leaf", "https://redleaffdk.com/"], ["OBG Group of Institution", "https://obggroup.in/"], ["Summer Hill School", "https://summerhillbti.com/"], ["ACE English Academy", "https://aceenglish.in/"], ["Sahibzada Jujhar Singh Public School", "https://sjsps.org/"], ["Sea Cross Immigration", "https://seacrossbti.com/"], ["Sanawar Smart School", "https://sanawarsmartbhupal.com/"], ["Mata Sito Devi College of Education", "https://msdedu.in/"], ["Amber Education & Visa Consultants", "https://ambervisaconsultancy.com/"], ["Alpine Public School", "https://apsmansa.com/"], ["S.D. Kanya Mahavidyala", "https://sdkmvmansa.com/"], ["Guru Nanak College Budhlada", "https://gncbudhlada.com/"], ["Akal Genius Fauji Pipe Band", "https://akalgeniusfaujipipeband.com/"], ["Guru Nanak Army Pipe Band", "https://gurunanakarmyband.com/"], ["Trianshya Living", "https://trianshyaliving.com/"], ["Industrial Powerup", "https://industrialpowerup.com/"], ["Waris Trading", "https://www.waristrading.com/"], ["InviteMart", "https://invitemart.com/"], ["Cheese Factory", "https://cheesefactory.co.in/"], ["Brar Scribbles", "https://brarscribbles.com/"], ["Bekdorf Health", "https://bekdorfhealth.ae/"], ["One-R", "https://one-r.com.sg/"], ["Transcure", "https://transcure.in/"], ["Bekdorf", "https://bekdorf.com/"], ["Just Care For You", "https://justcare4you.com.au/"], ["Muse Ivanhoe Cafe", "https://www.museivanhoe.com.au/"], ["Property 1313", "https://property1313.com/"], ["Realty Finders", "https://realtyfinders.in/"], ["All In One Enterprises", "https://aioenterprises.com/"], ["Modern Jewellers", "https://modernjewellers.in/"], ["Retro Shutter", "https://retroshutter.com/"], ["1st Lady Salon", "https://1stladysaloon.com/"], ["YFC Academy Bundala", "https://yfcbundala.com/"], ["3rd Eye TV", "https://www.3rd-eye.tv/"], ["Sarvodaya Karnal", "https://sarvodayaknl.com/"], ["Crescent Techno", "https://crescenttechno.com/"], ["Coastal Wave Logistics", "https://coastalwavelogistics.com/"], ["Regulatory Affairs", "https://regulatoryaffairs.ae/"], ["Design Shooters", "https://www.designshooters.com/"], ["Sky Travel and Destinations", "https://skytravels.co.in/"], ["Modern Crop Care Chemicals", "https://moderncropcarechemicals.com/"], ["Crop Chemicals", "https://www.cropchemicals.co.in/"], ["Triveni Chemicals", "https://trivenichemicals.co.in/"], ["Dubblin", "https://dubblin.co.in/"], ["DM Juris Consultants", "https://dmjurisconsultants.com/"], ["Bathinda Half Marathon", "https://bathindarunners.com/"], ["Aasraa Foundation", "https://aasraafoundation.com/"], ["VideoGiri", "https://videogiri.com/"], ["Haimi Agro Chemicals", "https://haimiagrochemicals.com/"], ["Punjab Today News", "https://www.punjabtodaynews.com/"], ["Web Carda", "https://webcarda.com/"], ["J&B Event Management", "https://jbevents.in/"], ["Outdo System (.com)", "https://outdosystem.com/"], ["Outdo System (.in)", "https://outdosystem.in/"], ["Legi Mex", "https://legimex.com/"], ["BSJ Pest Control", "https://bsjpestcontrol.in/"], ["ACCAI - Ashok Courier", "https://accai.in/"]];
 const cat=n=>/school|college|academy|institution|education|english|kanya|mahavidyala|law|career|sanawar|yfc|whitehawk/i.test(n)?'Education':/immigration|visa/i.test(n)?'Immigration & Visa':/chemical|crop|agro/i.test(n)?'Chemicals & Agro':/health|care|transcure|bekdorf/i.test(n)?'Health & Care':/band|tv|news|event|video|scribbles|shutter|invite|shooters|marathon|foundation/i.test(n)?'Media, Events & Community':'Business & Other';
 W.forEach(w=>w.push(cat(w[0])));
-$('#wsub').textContent=W.length+' live websites I developed end-to-end, across education, immigration, agriculture, health, media and business. Select one for a live preview.';
-const cats=['All',...new Set(W.map(w=>w[2]).sort())];let fc='All';
+$('#wsub').textContent=W.length+' live websites I developed end-to-end, across education, immigration, agriculture, health, media and business. A few highlights first — the full archive follows. Select one for a live preview.';
+// featured picks: sector + geography spread, all real client sites from the list above
+const FEAT=['https://bekdorfhealth.ae/','https://armaanimmigration.ca/','https://stpaulsinternationalschoolmohali.com/','https://www.museivanhoe.com.au/','https://one-r.com.sg/','https://regulatoryaffairs.ae/','https://modernjewellers.in/','https://www.punjabtodaynews.com/'];
+const countryOf=u=>{const t=new URL(u).hostname.split('.').pop();return {ae:'UAE',ca:'Canada',au:'Australia',sg:'Singapore',in:'India'}[t]||''};
+const ARC=W.filter(w=>!FEAT.includes(w[1]));
+function drawFeat(){$('#feat').innerHTML=FEAT.map(u=>{const w=W.find(x=>x[1]===u);if(!w)return '';const c=countryOf(u);
+return `<button type="button" data-u="${w[1]}"><small>Featured · ${w[2]}${c?' · '+c:''}</small><b>${w[0]}</b><span>${new URL(w[1]).hostname.replace(/^www\./,'')}</span><small style="color:var(--acc)">Live preview ↗</small></button>`}).join('');
+$$('#feat button').forEach(b=>b.onclick=()=>{const w=W.find(x=>x[1]===b.dataset.u);openRef([w[0],w[2],[['Live site',w[1]]]],true)})}
+drawFeat();
+const cats=['All',...new Set(ARC.map(w=>w[2]).sort())];let fc='All';
 function drawW(){$('#chips').innerHTML=cats.map(x=>`<button type="button" class="${x===fc?'on':''}" data-c="${x}">${x}</button>`).join('');
 $$('#chips button').forEach(b=>b.onclick=()=>{fc=b.dataset.c;drawW()});
-$('#wg').innerHTML=W.filter(w=>fc==='All'||w[2]===fc).map(w=>`<button type="button" data-u="${w[1]}"><small>${w[2]}</small><b>${w[0]}</b><small>${new URL(w[1]).hostname.replace(/^www\./,'')}</small><small style="color:var(--acc)">Live preview ↗</small></button>`).join('');
+$('#wg').innerHTML=ARC.filter(w=>fc==='All'||w[2]===fc).map(w=>`<button type="button" data-u="${w[1]}"><b>${w[0]}</b><span>${new URL(w[1]).hostname.replace(/^www\./,'')} · ${w[2]}</span></button>`).join('');
 $$('#wg button').forEach(b=>b.onclick=()=>{const w=W.find(x=>x[1]===b.dataset.u);openRef([w[0],w[2],[['Live site',w[1]]]],true)});
 // one locked tile: a real NDA client, details withheld on purpose
 const nda=document.createElement('button');nda.type='button';nda.className='nda';nda.setAttribute('aria-disabled','true');
-nda.innerHTML='<small>Client work · NDA</small><b>Classified</b><span>Under NDA — details withheld</span><small style="color:var(--acc)">Request access ↗</small>';
+nda.innerHTML='<b>Classified</b><span>Client work · NDA — details withheld</span>';
 nda.onclick=()=>{nda.classList.remove('denied');void nda.offsetWidth;nda.classList.add('denied');let t=nda.querySelector('.denmsg');if(!t){t=document.createElement('em');t.className='denmsg';nda.appendChild(t)}t.textContent='ACCESS_DENIED — clearance insufficient'};
 $('#wg').appendChild(nda)}
 drawW();
@@ -62,6 +70,28 @@ const A=[
 {k:'Program',t:'Google Cloud Gen AI Academy APAC',d:'Participant',x:'Certificate pending',l:['Certificate to be added'],s:'',b:[]}];
 $('#ach').innerHTML=A.map((a,i)=>`<button type="button" data-i="${i}"><small>${a.k}</small><b>${a.d}</b><span>${a.t}</span><small>${a.x}</small>${a.img?'<small style="color:var(--acc)">View certificate ↗</small>':''}</button>`).join('');
 $$('#ach button').forEach(b=>b.onclick=()=>openModal(A[b.dataset.i]));
+// verified highlights strip (items only from the A data above — nothing invented)
+const PI=[[4,1],[2,0],[0,0],[1,0]];
+$('#proof').innerHTML='<span class="plabel">Verified highlights</span>'+PI.map(([i,v])=>`<button type="button" data-i="${i}"><b>${A[i].d}</b><span>${A[i].t}</span>${v?'<small>Certificate verified ↗</small>':''}</button>`).join('');
+$$('#proof button').forEach(b=>b.onclick=()=>openModal(A[+b.dataset.i]));
+// focus trap: keep Tab inside the modal while it is open
+addEventListener('keydown',e=>{if(e.key!=='Tab'||!$('#modal').classList.contains('on'))return;
+const f=[...$('#modal .mcard').querySelectorAll('button,a[href],input,textarea,[tabindex]')].filter(el=>!el.hidden&&el.offsetParent!==null);
+if(!f.length)return;const first=f[0],last=f[f.length-1];
+if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}});
+// active nav link for the section in view
+const nlinks=[...document.querySelectorAll('#menu a')];
+const nio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)nlinks.forEach(a=>{const on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('on',on);on?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current')})}),{rootMargin:'-40% 0px -55% 0px'});
+$$('section[id]').forEach(s=>nio.observe(s));
+// magnetic hero buttons (fine pointer + motion allowed only)
+if(FINE&&!RM)$$('.hero .btn').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.16}px,${(e.clientY-r.top-r.height/2)*.26}px)`});b.addEventListener('pointerleave',()=>b.style.transform='')});
+// one-time decode effect on the hero name — on-brand for the Secure AI motif
+const nm=$('.hero h1.nm');
+if(nm&&!RM){const final=nm.textContent;let started=false;
+new MutationObserver((m,o)=>{if(!document.body.classList.contains('ready')||started)return;started=true;o.disconnect();
+const glyphs='█▓▒░<>/\\|01';let f=0;const iv=setInterval(()=>{f+=1/16;
+nm.textContent=final.split('').map((c,i)=>c===' '?' ':(i/final.length)<f?c:glyphs[Math.random()*glyphs.length|0]).join('');
+if(f>=1){clearInterval(iv);nm.textContent=final}},64)}).observe(document.body,{attributes:true,attributeFilter:['class']})}
 // contact form
 $('#cf').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);location.href='mailto:akshaykammar123@gmail.com?subject='+encodeURIComponent('Portfolio message from '+f.get('n'))+'&body='+encodeURIComponent(f.get('m'))};
 let drag=0,down=false,sx=0,moved=0;const room=$('#room'),projects=$('#projects');
@@ -76,7 +106,7 @@ const JD=[["2024", "Beginning", ["BCA at New Horizon", "Curiosity into code", "B
 const jc=$('#jcards'),jy=$('#jyears'),jt=$('.jt');const jk=[],jyl=[];
 JD.forEach((d,i)=>{const P=JP[i],dot=document.createElement('div');dot.className='jd';dot.style.cssText=`left:${P.x/16}%;top:${P.y/9}%`;jy.appendChild(dot);
 const y=document.createElement('div');y.className='jy';y.textContent=d[0];y.style.cssText=`left:${P.x/16}%;top:${P.y/9}%`;jy.appendChild(y);jyl.push(y);
-const k=document.createElement('div');k.className='jk';k.innerHTML=`<div class="im"><img src="${JI[d[3]==='1'?0:1]}" style="object-position:${d[4]}% 20%;transform:scale(${1.1+i*.12})"></div><h5>${d[0]}</h5><b>${d[1]}</b><small>${d[2].join('<br>')}</small>`;
+const k=document.createElement('div');k.className='jk';k.innerHTML=`<div class="im"><img loading="lazy" decoding="async" src="${JI[d[3]==='1'?0:1]}" style="object-position:${d[4]}% 20%;transform:scale(${1.1+i*.12})" alt=""></div><h3>${d[0]}</h3><b>${d[1]}</b><small>${d[2].join('<br>')}</small>`;
 k.dataset.x=P.x;k.dataset.y=P.y;jc.appendChild(k);jk.push(k)});
 let js_=0;function JT(p){js_+=(p*(JD.length-1)-js_)*.12;const s=js_,idx=Math.round(s);const f=.06+.9*s/(JD.length-1),H=arc.getPointAtLength(AL*f);
 [$('#hand'),$('#hand2')].forEach(l=>{l.setAttribute('x2',H.x);l.setAttribute('y2',H.y)});
