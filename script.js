@@ -1,7 +1,8 @@
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const RM=matchMedia('(prefers-reduced-motion:reduce)').matches,FINE=matchMedia('(pointer:fine)').matches;
 // loader
-let n=0;const pc=$('#pc'),iv=setInterval(()=>{n=Math.min(100,n+Math.ceil(Math.random()*7));pc.textContent=String(n).padStart(2,'0')+'%';if(n>=100){clearInterval(iv);setTimeout(()=>$('#load').classList.add('off'),350)}},55);
+let n=0;const pc=$('#pc'),iv=setInterval(()=>{n=Math.min(100,n+Math.ceil(Math.random()*7));pc.textContent=String(n).padStart(2,'0')+'%';if(n>=100){clearInterval(iv);setTimeout(()=>{$('#load').classList.add('off');document.body.classList.add('ready')},350)}},55);
+setTimeout(()=>document.body.classList.add('ready'),6000); // safety: never trap the hero hidden
 $('#mb').onclick=()=>{const o=$('#menu').classList.toggle('open');$('#mb').setAttribute('aria-expanded',o)};$$('#menu a').forEach(a=>a.onclick=()=>$('#menu').classList.remove('open'));
 // hero tilt
 const hero=$('#home');if(FINE&&!RM)hero.addEventListener('pointermove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;$('#hin').style.transform=`rotateY(${x*14}deg) rotateX(${-y*10}deg)`;$('#hbg').style.transform=`scale(1.1) translate(${-x*30}px,${-y*30}px)`});
