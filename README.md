@@ -13,7 +13,8 @@ Edit content in index.html; project cards and timeline data are in script.js (ar
 - Pinned-section animation loop pauses off-screen; tilt effects only on fine pointers and when motion is allowed.
 - Project screens are real buttons; modal closes on Esc and restores focus; skip link and focus outlines added.
 - Contact: phone removed; form opens the visitor's email app.
-- TODO after you pick a domain: add absolute `og:image` (1200x630), `canonical`, sitemap.xml, robots.txt.
+- SEO: canonical + OG/Twitter + JSON-LD (@graph Person/WebSite) all point at `https://akshu1245.github.io/portfolio/`; `sitemap.xml`, `robots.txt` and `assets/og-image.png` (1200x630) included. The Vercel mirror is canonical-only (link tag) and sends `X-Robots-Tag: noindex` for `*.vercel.app` hosts.
+- After deploy: submit the sitemap in Google Search Console + Bing Webmaster Tools (URL-prefix property); refresh the social card in the X/Facebook/LinkedIn debuggers; bump sitemap `lastmod` whenever content changes.
 
 - Design references section: 24 third-party templates (array T in script.js), loaded in a popup iframe on demand and clearly credited as not my work.
 

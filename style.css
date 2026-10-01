@@ -153,6 +153,32 @@ button.scr{font:inherit;color:inherit;text-align:left}
 .chips button.on,.chips button:hover{background:var(--fg);color:#000;border-color:var(--fg)}
 .ach.sm{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));max-width:1100px;gap:14px}.ach.sm button{padding:18px}.ach.sm b{font-size:20px}
 #load{animation:lf .6s 7s forwards}@keyframes lf{to{opacity:0;visibility:hidden}}
+/* internet-wide improvement pass */
+/* hero status line: live IST clock + availability */
+.stat{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:24px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#a58a63;position:relative;z-index:2}
+.stat i{width:8px;height:8px;border-radius:50%;background:#7ddf8a;box-shadow:0 0 12px #7ddf8a;animation:pl 2.2s ease-in-out infinite}
+@keyframes pl{50%{opacity:.35}}
+/* primary CTA: quick light sweep on hover */
+.hero .btn.p{position:relative;overflow:hidden}
+.hero .btn.p::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-115%);transition:transform .45s ease;pointer-events:none}
+.hero .btn.p:hover::after{transform:translateX(115%)}
+/* one-pass scan sweep on section headings */
+section h2{position:relative}
+section h2.scanned::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 40%,rgba(232,194,122,.28) 50%,transparent 60%);transform:translateX(-101%);animation:scsw .55s ease-out forwards;pointer-events:none}
+@keyframes scsw{to{transform:translateX(101%)}}
+/* email row + copy button */
+.emrow{display:flex;align-items:center;gap:12px}
+.emrow .lk{flex:1}
+.cpb{background:none;border:1px solid #3a3a3a;color:var(--fg);border-radius:99px;padding:9px 18px;font:inherit;font-size:13px;cursor:pointer;transition:.3s;white-space:nowrap}
+.cpb:hover{border-color:var(--acc);color:var(--acc)}
+/* classified / NDA decoy tile */
+.ach button.nda{border-style:dashed;opacity:.9}
+.ach button.nda.denied{animation:shk .4s}
+@keyframes shk{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}
+.denmsg{color:#ff6a5a;font-size:13px;letter-spacing:.12em}
+/* konami banner */
+.ovr{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:120;background:#0d0a05;border:1px solid var(--acc);color:var(--acc);padding:12px 22px;border-radius:10px;font-size:14px;letter-spacing:.18em;box-shadow:0 0 40px rgba(232,194,122,.3)}
+@media(prefers-reduced-motion:reduce){.stat i{animation:none}section h2.scanned::after{display:none}.ach button.nda.denied{animation:none}}
 
 /* ===== GLOW-UP 2026-10-01: cinematic grade + signature scan motif ===== */
 /* film grain over everything (static: zero perf cost, motion-safe) */
