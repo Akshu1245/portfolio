@@ -9,7 +9,6 @@ A cinematic, scroll-driven portfolio for an AI security and product builder. Pla
 - **Client work:** 60+ live websites I developed, filterable by category, with a live preview popup.
 - **Work with me:** services, process, and a contact form that tags the email subject with the project type.
 - **Proof of work:** hackathon results with certificate images.
-- **Resume:** `resume.html` prints to a one-page A4 PDF.
 - **Design references:** third-party templates I studied, clearly credited as not my work.
 
 ## Quality
@@ -19,4 +18,4 @@ Keyboard and screen-reader friendly popups, reduced-motion support, mobile-first
 Open `index.html`, or run `npx serve .` in this folder. Deploys as static files on Vercel.
 
 ## Structure
-`index.html` · `style.css` · `script.js` (project, achievement and client data are arrays at the top of the file) · `resume.html` · `assets/`
+`index.html` · `style.css` · `script.js` (project, achievement and client data are arrays at the top of the file) · `assets/`
