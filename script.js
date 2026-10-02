@@ -66,8 +66,7 @@ const A=[
 {k:'2026',t:'Cyber Kushti',d:'Team Captain',x:'Team SHUNYAVEER',l:['Led Team SHUNYAVEER'],s:'',b:[]},
 {k:'Feb 2026',t:'CodeSprint 4.0',d:'Participant',x:'National-level hackathon · NMIT Bengaluru',img:'assets/certs/codesprint.webp',l:['Organised by Google Developer Group NMIT, 28 February 2026'],s:'',b:[['Verify certificate','https://verification.givemycertificate.com/v/98ae2fee-cf9f-42c5-88d9-c9c5bafa47ab']]},
 {k:'2026',t:'Athernex Hackathon',d:'Participant',x:'ByteXync (DSCE) × CodeIO (BMSCE)',img:'assets/certs/athernex.webp',l:['Certificate of Participation from DSCE and BMSCE'],s:'',b:[]},
-{k:'2025',t:'Smart India Hackathon',d:'Team Lead',x:'Internal round',l:['Led the team through the internal round'],s:'',b:[]},
-{k:'Program',t:'Google Cloud Gen AI Academy APAC',d:'Participant',x:'Certificate pending',l:['Certificate to be added'],s:'',b:[]}];
+{k:'2025',t:'Smart India Hackathon',d:'Team Lead',x:'Internal round',l:['Led the team through the internal round'],s:'',b:[]}];
 $('#ach').innerHTML=A.map((a,i)=>`<button type="button" data-i="${i}"><small>${a.k}</small><b>${a.d}</b><span>${a.t}</span><small>${a.x}</small>${a.img?'<small style="color:var(--acc)">View certificate ↗</small>':''}</button>`).join('');
 $$('#ach button').forEach(b=>b.onclick=()=>openModal(A[b.dataset.i]));
 // verified highlights strip (items only from the A data above — nothing invented)
@@ -93,7 +92,7 @@ const glyphs='█▓▒░<>/\\|01';let f=0;const iv=setInterval(()=>{f+=1/16;
 nm.textContent=final.split('').map((c,i)=>c===' '?' ':(i/final.length)<f?c:glyphs[Math.random()*glyphs.length|0]).join('');
 if(f>=1){clearInterval(iv);nm.textContent=final}},64)}).observe(document.body,{attributes:true,attributeFilter:['class']})}
 // contact form
-$('#cf').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);location.href='mailto:akshaykammar123@gmail.com?subject='+encodeURIComponent('Portfolio message from '+f.get('n'))+'&body='+encodeURIComponent(f.get('m'))};
+$('#cf').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);location.href='mailto:akshaykammar123@gmail.com?subject='+encodeURIComponent('['+f.get('t')+'] Portfolio message from '+f.get('n'))+'&body='+encodeURIComponent(f.get('m'))};
 let drag=0,down=false,sx=0,moved=0;const room=$('#room'),projects=$('#projects');
 room.addEventListener('pointerdown',e=>{down=true;sx=e.clientX;moved=0});addEventListener('pointerup',()=>down=false);
 room.addEventListener('pointermove',e=>{if(down){const d=e.clientX-sx;sx=e.clientX;drag+=d*.3;moved+=Math.abs(d)}});
@@ -130,3 +129,6 @@ console.log('%cRaksHex console%c\nYou opened DevTools — good instinct. Nothing
 // konami easter egg
 const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0;
 addEventListener('keydown',e=>{ki=e.key===seq[ki]?ki+1:0;if(ki===seq.length){ki=0;const b=document.createElement('div');b.className='ovr';b.setAttribute('role','status');b.textContent='OVERRIDE_ACCEPTED — clearance granted, builder';document.body.appendChild(b);setTimeout(()=>b.remove(),2600)}});
+
+// work-with-me buttons preselect the contact form
+$$('.svc button').forEach(b=>b.onclick=()=>{$('#ct').value=b.dataset.t;$('#contact').scrollIntoView({behavior:RM?'auto':'smooth'});setTimeout(()=>$('#cf textarea').focus({preventScroll:true}),600)});

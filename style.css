@@ -244,3 +244,11 @@ body:not(.ready) .hero .in{opacity:0}
  .contact{grid-template-columns:1fr}
  footer{color:#666}
 }
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin:7vh auto 0;max-width:1000px;text-align:left}
+.svc div{border:1px solid rgba(232,194,122,.35);background:rgba(20,14,5,.72);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.svc h3{font:400 26px/1.1 Playfair Display;color:var(--acc)}.svc p{color:var(--mut);font-size:18px;flex:1}
+.svc button{align-self:flex-start;font:inherit;color:#000;background:var(--fg);border:0;border-radius:99px;padding:9px 18px;cursor:pointer}
+.steps2{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:1000px;margin:5vh auto 0;padding:0;text-align:left;counter-reset:s}
+.steps2 li{counter-increment:s;border-top:1px solid #3a3a3a;padding-top:14px;color:var(--mut);font-size:17px}
+.steps2 li:before{content:"0" counter(s);display:block;color:var(--acc);letter-spacing:.2em;font-size:13px}.steps2 b{display:block;color:var(--fg);font:400 22px Playfair Display}
+.cf select{font:inherit;color:var(--fg);background:#0d0a05;border:1px solid #2c2210;border-radius:10px;padding:12px 14px}

@@ -1,21 +1,22 @@
-# K S Akshay — Portfolio
+# K S AKSHAY — Portfolio
 
-Static site: index.html, style.css, script.js, assets/.
+Live: https://portfolio-sable-kappa-gg6y48eckb.vercel.app
 
-Run: open index.html, or `npx serve .`
-Deploy: drag this folder to vercel.com/new or app.netlify.com/drop.
+A cinematic, scroll-driven portfolio for an AI security and product builder. Plain HTML, CSS and JavaScript, with no build step.
 
-assets/: img1 = photo 1, img2 = photo 2, remaining = silhouette.
-Edit content in index.html; project cards and timeline data are in script.js (arrays P and JD).
+## What's on it
+- **Journey and Projects:** pinned scroll story and a 3D project carousel (RaksHex, EVT-CLIP, LittleNet, WhisperCache), each with a case-study popup and source links.
+- **Client work:** 60+ live websites I developed, filterable by category, with a live preview popup.
+- **Work with me:** services, process, and a contact form that tags the email subject with the project type.
+- **Proof of work:** hackathon results with certificate images.
+- **Resume:** `resume.html` prints to a one-page A4 PDF.
+- **Design references:** third-party templates I studied, clearly credited as not my work.
 
-## v2 changes
-- Own-voice copy, sharper hero (AI security + RaksHex), achievements gallery (edit array A in script.js; add certificate links via `b:[['View','url']]`).
-- Pinned-section animation loop pauses off-screen; tilt effects only on fine pointers and when motion is allowed.
-- Project screens are real buttons; modal closes on Esc and restores focus; skip link and focus outlines added.
-- Contact: phone removed; form opens the visitor's email app.
-- SEO: canonical + OG/Twitter + JSON-LD (@graph Person/WebSite) all point at `https://akshu1245.github.io/portfolio/`; `sitemap.xml`, `robots.txt` and `assets/og-image.png` (1200x630) included. The Vercel mirror is canonical-only (link tag) and sends `X-Robots-Tag: noindex` for `*.vercel.app` hosts.
-- After deploy: submit the sitemap in Google Search Console + Bing Webmaster Tools (URL-prefix property); refresh the social card in the X/Facebook/LinkedIn debuggers; bump sitemap `lastmod` whenever content changes.
+## Quality
+Keyboard and screen-reader friendly popups, reduced-motion support, mobile-first layout, structured data, sitemap and Open Graph preview.
 
-- Design references section: 24 third-party templates (array T in script.js), loaded in a popup iframe on demand and clearly credited as not my work.
+## Run locally
+Open `index.html`, or run `npx serve .` in this folder. Deploys as static files on Vercel.
 
-- Client work (websites developed for clients): array W in script.js (from your verified CSV), filterable by category, live preview in popup.
+## Structure
+`index.html` · `style.css` · `script.js` (project, achievement and client data are arrays at the top of the file) · `resume.html` · `assets/`
